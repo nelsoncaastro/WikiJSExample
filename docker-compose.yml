@@ -4,9 +4,9 @@ services:
   db:
     image: postgres:11-alpine
     environment: 
-      POSTGRES_DB: wiki
-      POSTGRES_PASSWORD: wikijspassword
-      POSTGRES_USER: wikijs
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USER}
     logging: 
       driver: "none"
     restart: unless-stopped
@@ -18,15 +18,13 @@ services:
     depends_on: 
       - db
     environment: 
-      DB_TYPE: postgres
-      DB_HOST: db
-      DB_PORT: 5432
-      DB_USER: wikijs
-      DB_PASS: wikijspassword      
-      DB_NAME: wiki
+      WIKI_ADMIN_EMAIL: ${WIKI_ADMIN_EMAIL}
     restart: unless-stopped
     ports: 
       - "80:3000"
+    volumes: 
+      - $HOME/wikijsexample/config.yml:/var/wiki/config.yml
+      - $HOME/wikijsexample/github.pem:/etc/wiki/keys/github.pem
 
 volumes:
   db-data:

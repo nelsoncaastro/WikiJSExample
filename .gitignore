@@ -1,2 +1,4 @@
 *.pem
 *.pem.pub
+.env
+config.yml
