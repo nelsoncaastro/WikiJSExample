@@ -22,9 +22,10 @@ services:
     restart: unless-stopped
     ports: 
       - "80:3000"
+      - "3443:3443"
     volumes: 
-      - $HOME/wikijsexample/config.yml:/var/wiki/config.yml
-      - $HOME/wikijsexample/github.pem:/etc/wiki/keys/github.pem
+      - $HOME/WikiJSExample/config.yml:/wiki/config.yml
+      - $HOME/WikiJSExample/github.pem:/etc/wiki/keys/github.pem
 
 volumes:
   db-data:
